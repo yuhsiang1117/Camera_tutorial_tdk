@@ -5,6 +5,21 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
+'''
+Depth Camera Intrinsics:
+Width: 848
+Height: 480
+PPX (principal point x): 429.2327575683594
+PPY (principal point y): 236.95892333984375
+Fx (focal length x): 427.5506286621094
+Fy (focal length y): 427.5506286621094
+Distortion model: distortion.brown_conrady
+Distortion coefficients: [0.0, 0.0, 0.0, 0.0, 0.0]
+Color Camera Intrinsics:
+PPX: 329.0754699707031, PPY: 244.79696655273438
+Fx: 606.8665771484375, Fy: 606.635986328125
+'''
+
 class Orange(Node):
     def __init__(self):
         super().__init__('orange_node')
@@ -58,7 +73,7 @@ class Orange(Node):
                 cx = x + w // 2
                 cy = y + h // 2
 
-                depth_value = self.cv_depth[y, x] * 0.1
+                depth_value = self.cv_depth[cy, cx] * 0.1
                 self.get_logger().info(f"Depth at ({x}, {y}): {depth_value:.3f} cm")
 
                 # 在圖上標記中心點
